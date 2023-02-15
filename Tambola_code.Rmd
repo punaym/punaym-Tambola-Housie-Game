@@ -1,0 +1,43 @@
+---
+title: "Tambola"
+author: "Punay Mehra"
+date: "5/2/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+require(devtools)
+install_version("XLConnect", version = "1.0.2", repos = "http://cran.us.r-project.org")
+install.packages("XLConnect", type="source", INSTALL_opts = c("--no-multiarch"))
+# if (! require("XLConnect")){install.packages("XLConnect")}+
+library("XLConnect")
+if (! require("excel.link")){install.packages("excel.link")}+library(excel.link)
+if (! require("svDialogs")) {install.packages("svDialogs")} + library(svDialogs)
+
+path<-paste0(choose.dir(),"play_Tambola.xlsx")
+exc <- loadWorkbook(path, create = TRUE)
+createSheet(exc,'TAMBOLA')
+saveWorkbook(exc)
+xl.workbook.add(path)
+
+
+set.seed(7)
+a<-unique(sample(rep(1:100), 100, replace = F))
+#length(a)
+x=matrix(" ",nrow = 10, ncol = 10)
+k=1
+
+for(i in 1:10){
+  for(j in 1:10){
+    x[i,j]<-a[k]
+    
+    winDialog(type ="ok" ,paste0("Lucky Number is : ",x[i,j],"\n","Next Number"))
+    k=k+1
+    dlgMessage(x)
+     xlrc[b8]<-"Tambola"
+    xlrc[b5] <- x
+xl.tambola <- xl.connect.table("a5",row.names=TRUE,col.names=TRUE)
+
+    }
+  }
+```
